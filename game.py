@@ -161,23 +161,32 @@ num_rectangles = 9  # You can change this to the desired number
 spacing = (screen_width - (rectangle_width * num_rectangles)) / (num_rectangles + 1)
 print(spacing)
 
- 
-
 run = True
-your_turn = True
+start = False
+while run == True and start == False:
+    screen.fill((0, 0, 0))
+    message = "Here are the instructions! Press enter to begin!"
+    font = pygame.font.Font (None, 36)
+    text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
+    screen.blit(text, (350, 50))
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                start = True
+                your_turn = True
+                tries = 0
+                break
+        if event.type == pygame.QUIT:
+            run = False
 
-
-# ... (Previous code)
-
-run = True
-your_turn = True
-tries = 0
-
-while run:
+    pygame.display.update()
+                
+while run == True and start == True:
     # Starting position for the first rectangle
     x = 30
     y = 420
     stop_display_cards = False
+    first_draw = True
     screen.fill((0, 0, 0))
 
     for event in pygame.event.get():
@@ -195,14 +204,24 @@ while run:
                         play_stack.append(card)
                         player.pop(selected_index - 1)
                         create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], False)
-                        for i in range(len(player)):
-                            p = player[i]
-                            create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
-                            x += rectangle_width + spacing
-                            if i == len(player) - 1:
-                                stop_display_cards = True
+                        # for i in range(len(player)):
+                        #     p = player[i]
+                        #     create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
+                        #     x += rectangle_width + spacing
+                        #     if i == len(player) - 1:
+                        #         stop_display_cards = True
                         pygame.display.update()
-                        # time.sleep(2)
+                        # time.sleep(1)
+
+                        if len(player) == 0:
+                            message = "Yay you won!"
+                            font = pygame.font.Font(None, 36)
+                            text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
+                            screen.blit(text, (300, 380))
+                            screen.display.update()
+                            time.sleep(10)
+                            run = False
+
                         your_turn = False
                         if (play_stack [-1][0] == "reverse") or play_stack[-1][0] == 'skip':
                             your_turn = True
@@ -211,6 +230,22 @@ while run:
                 if len(player) < 9:
                     draw_card = cards.pop()
                     player.append(draw_card)
+                    screen.fill((0, 0, 0))
+                    create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
+                    x = 30
+                    for i in range(len(player)):
+                        p = player[i]
+                        # if i == len(player) - 1:
+                        create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
+                        x += rectangle_width + spacing
+                        if i == len(player) - 1:
+                            stop_display_cards = True
+
+                    pygame.display.update()
+                    first_draw = False
+                    # time.sleep(2)
+                
+
                 else:
                     tries += 1
                 if tries == 2:
@@ -232,7 +267,7 @@ while run:
         text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
         screen.blit(text, (550, 50))
         pygame.display.update()
-        time.sleep(2)
+        time.sleep(1)
 
         valid = False
         for i in range(len(computer)):
@@ -256,14 +291,15 @@ while run:
 
         your_turn = True
 
-    create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
+    if first_draw:
+        create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
 
-    for i in range(len(player)):
-        p = player[i]
-        create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
-        x += rectangle_width + spacing
-        if i == len(player) - 1:
-            stop_display_cards = True
+        for i in range(len(player)):
+            p = player[i]
+            create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
+            x += rectangle_width + spacing
+            if i == len(player) - 1:
+                stop_display_cards = True
 
     if len(cards) == 0:
         cards = play_stack[0:len(play_stack) - 2]
@@ -285,18 +321,6 @@ while run:
     font = pygame.font.Font(None, 36)
     text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
     screen.blit(text, (20, 30))
-    
-    # if len (player) >= 9:
-    #     message = "You drew more than 9 cards, you have lost the game!"
-    #     font = pygame.font.Font(None, 36)
-    #     text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-    #     screen.blit(text, (300, 380))
-
-    # if len (computer) >= 9:
-    #     message = "The computer had more than 9 cards, you won!"
-    #     font = pygame.font.Font(None, 36)
-    #     text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-    #     screen.blit(text, (300, 380))
 
     pygame.display.update()
 
