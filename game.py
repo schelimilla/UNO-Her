@@ -203,22 +203,15 @@ while run == True and start == True:
                     if valid_play(play_stack[-1], card):
                         play_stack.append(card)
                         player.pop(selected_index - 1)
-                        create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], False)
-                        # for i in range(len(player)):
-                        #     p = player[i]
-                        #     create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
-                        #     x += rectangle_width + spacing
-                        #     if i == len(player) - 1:
-                        #         stop_display_cards = True
+                        create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
                         pygame.display.update()
-                        # time.sleep(1)
 
                         if len(player) == 0:
                             message = "Yay you won!"
                             font = pygame.font.Font(None, 36)
                             text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
                             screen.blit(text, (300, 380))
-                            screen.display.update()
+                            pygame.display.update()
                             time.sleep(10)
                             run = False
 
@@ -267,6 +260,8 @@ while run == True and start == True:
         text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
         screen.blit(text, (550, 50))
 
+        # screen.fill((0, 0, 0))
+        # create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
         x = 30
         for i in range(len(player)):
             p = player[i]
