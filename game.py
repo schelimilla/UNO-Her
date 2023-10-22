@@ -183,10 +183,13 @@ run = True
 start = False
 while run == True and start == False:
     screen.fill((0, 0, 0))
-    message = "Here are the instructions! Press enter to begin!"
-    font = pygame.font.Font (None, 36)
-    text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-    screen.blit(text, (350, 50))
+    message = ["Let's play Womeno!", "This is UNO, with a spin! You will be playing against a computer.", "You may match cards in the pile by either color or person.", "Click on the card you want to play. Press 'd' if you want to draw a card.", "If you ever want to learn more about the woman on your card,", "simply right click on the card!", "Good luck, and press 'Enter' to begin :)"]
+    font = pygame.font.Font (None, 45)
+    msg_y = 200
+    for m in message:
+        text = font.render(m, True, (255, 255, 255))  # (R, G, B) for white
+        screen.blit(text, (150, msg_y))
+        msg_y += 30
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
