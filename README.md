@@ -1,4 +1,4 @@
-# womeno
+# UNO-Her
 Womeno is a spin on the game UNO, with a goal of educating and empowering women! 
 
 ## Setup
