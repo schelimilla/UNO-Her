@@ -7,9 +7,9 @@ Womeno is a spin on the game UNO, with a goal of educating and empowering women!
 3. Run 'python3 game.py' to start the game
 
 ## Authors
-Srini Chelimilla
-Neha Bagalkot
-Pravallika Kullampalle
+Srini Chelimilla  
+Neha Bagalkot  
+Pravallika Kullampalle  
 
 ### Note
 This project was created for and submitted to Girls Hoo Hack 2023 hackathon
