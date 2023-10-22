@@ -11,5 +11,6 @@ Srini Chelimilla
 Neha Bagalkot  
 Pravallika Kullampalle  
 
-### Note
-This project was created for and submitted to Girls Hoo Hack 2023 hackathon
+### Notes
+- Our team used the VScode Live Share extension so all of us were working on it at the same time, but one person pushed the changes to GitHub.
+- This project was created for and submitted to Girls Hoo Hack 2023 hackathon
