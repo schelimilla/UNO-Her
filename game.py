@@ -202,7 +202,7 @@ while run:
                             if i == len(player) - 1:
                                 stop_display_cards = True
                         pygame.display.update()
-                        time.sleep(2)
+                        # time.sleep(2)
                         your_turn = False
                         if (play_stack [-1][0] == "reverse") or play_stack[-1][0] == 'skip':
                             your_turn = True
@@ -227,10 +227,13 @@ while run:
         screen.blit(text, (550, 50))
 
     else:
-        message = "It's the computer's turn to play!"
+        message = "The computer is playing now!"
         font = pygame.font.Font (None, 36)
         text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
         screen.blit(text, (550, 50))
+        pygame.display.update()
+        time.sleep(2)
+
         valid = False
         for i in range(len(computer)):
             card = computer[i]
@@ -277,6 +280,11 @@ while run:
         font = pygame.font.Font(None, 36)
         text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
         screen.blit(text, (300, 380))
+
+    message = "The computer has: " + str(len(computer)) + " cards"
+    font = pygame.font.Font(None, 36)
+    text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
+    screen.blit(text, (20, 30))
     
     # if len (player) >= 9:
     #     message = "You drew more than 9 cards, you have lost the game!"
