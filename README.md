@@ -1,5 +1,5 @@
 # UNO-Her
-Womeno is a spin on the game UNO, with a goal of educating and empowering women! 
+UNO-Her is an innovative twist on the classic UNO game, designed to foster education and empowerment among women. Its primary objective is to deliver knowledge about influential women in the history of computer science through an engaging and interactive gaming experience.
 
 ## Setup
 1. Download the game.py file
