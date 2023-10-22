@@ -47,7 +47,7 @@ def create_card_object(x, y, width, height, text, card_color, center_pile):
     elif text == "Adele Goldberg":
         image = pygame.image.load('adele_goldberg.jpeg')
         # resized_image = pygame.transform.scale(image, (79, 130))
-    elif text == "Barba Liskov":
+    elif text == "Barbara Liskov":
         image = pygame.image.load('barbara_liskov.png')
         # resized_image = pygame.transform.scale(image, (79, 130))
     elif text == "Donna Strickland":
@@ -82,7 +82,6 @@ def create_card_object(x, y, width, height, text, card_color, center_pile):
         image = pygame.image.load('wild.png')
         # resized_image = pygame.transform.scale(image, (79, 130))
     else:
-        print(text)
         image = pygame.image.load('tbd.jpg')
         resized_image = pygame.transform.scale(image, (75, 50))
 
@@ -90,6 +89,7 @@ def create_card_object(x, y, width, height, text, card_color, center_pile):
         resized_image = pygame.transform.scale(image, (79, 130))
     else:
         resized_image = pygame.transform.scale(image, (130, 205))
+        
     image_surface = pygame.Surface(resized_image.get_size())
     image_surface.blit(resized_image, (0, 0))
 
@@ -103,19 +103,138 @@ def create_card_object(x, y, width, height, text, card_color, center_pile):
     return card_rect
 
 
-women_in_stem = ["Ada Lovelace", "Grace Hopper", "Jean Sammet", "Adele Goldberg", "Barba Liskov", "Radia Perlman", "Frances Allen", "Shafi Goldwasser", "Donna Strickland", "Joan Clarke"]
+women_in_stem = ["Ada Lovelace", "Grace Hopper", "Jean Sammet", "Adele Goldberg", "Barbara Liskov", "Radia Perlman", "Frances Allen", "Shafi Goldwasser", "Donna Strickland", "Joan Clarke"]
 women_in_stem_facts = {
-    "Ada Lovelace": ["Ada Lovelace, born in 1815, is often recognized as the world's", "first computer programmer. She collaborated with Charles Babbage", "on his Analytical Engine and wrote detailed notes and algorithms", "for the machine, including an algorithm for calculating", "Bernoulli numbers. Her work laid the foundation for modern computer", "programming and computational thinking."],
-    "Grace Hopper": ["Grace Hopper, born in 1906, was a pioneering American computer", "scientist and one of the first programmers of the Harvard Mark I computer", "during World War II. She played a significant role in the development", "of early programming languages and is often credited with", "coining the term \"debugging\" after removing a moth from", "a computer relay. Her work laid the foundation for", "modern computer programming, and she remains an", "iconic figure in the field of computer science."],
-    "Jean Sammet": ["Jean Sammet was a pioneering American computer scientist known for", "her significant contributions to the development of the programming", "language COBOL (Common Business-Oriented Language) in the late 1950s. She played", "a crucial role in the design and development of COBOL, which became", "one of the first high-level programming languages to target", "business data processing. Sammet's work in programming language design", "and her dedication to improving the field of computer", "science left a lasting impact on the industry."],
-    "Adele Goldberg": ["Adele Goldberg is a prominent computer scientist known for her", "contributions to the development of Smalltalk, a pioneering object-oriented", "programming language. She played a vital role in the development of graphical", "user interfaces, which are now widely used in modern computing."],
-    "Barba Liskov": ["Barbara Liskov is a pioneering computer scientist known for her groundbreaking", "work in programming languages and software engineering. She is particularly", "renowned for developing the programming language CLU, which introduced", "key concepts like abstract data types and the Liskov Substitution Principle,", "which is a fundamental principle in object-oriented programming."],
-    "Radia Perlman": ["Radia Perlman is a renowned computer scientist known for her pioneering work", "in network design and development. She is most famous for inventing", "the Spanning Tree Protocol (STP), a fundamental algorithm that revolutionized", "the way data is routed through complex networks, contributing significantly", "to the stability and scalability of modern Ethernet networks."],
-    "Frances Allen": ["Frances Allen was a pioneering American computer scientist known", "for her significant contributions to the field of compiler design and optimization.", "She was the first woman to receive the Turing Award in 2006, one of the highest honors", "in computer science, for her groundbreaking work in program optimization and her", "influence on the design of programming languages."],
-    "Shafi Goldwasser": ["Shafi Goldwasser is a renowned computer scientist and a pioneer", "in the field of cryptography. She is known for her groundbreaking work in the development", "of zero-knowledge proofs and has made significant contributions to complexity theory", "and the theory of cryptography. Goldwasser has received numerous awards", "and honors for her work, including the Turing Award in 2012, which she shared", "with Silvio Micali, for their transformative work in cryptography", "and their impact on internet security."],
-    "Donna Strickland": ["Donna Strickland is a Canadian physicist known for her groundbreaking", "work in the field of laser physics. In 2018, she was awarded the Nobel Prize", "in Physics, becoming the third woman in history to receive the Nobel Prize", "in this category, for her contributions to the", "development of high-intensity, ultra-short optical pulses."],
-    "Joan Clarke": ["Joan Clarke was a British cryptanalyst and mathematician", "who made significant contributions to breaking the German Enigma code", "during World War II as part of the Bletchley Park codebreaking team. She was", "known for her exceptional analytical skills and her work alongside", "figures like Alan Turing, helping to decipher encrypted messages critical to", "the war effort. Clarke's contributions to codebreaking remained relatively unknown", "until many years after the war due to the secrecy of her work at Bletchley Park."]
+    "Ada Lovelace": [
+        "World's first programmer, born in 1815,",
+        "she collaborated with Charles Babbage on",
+        "his Analytical Engine. She wrote detailed",
+        "notes and algorithms for the machine,",
+        "including an algorithm for calculating Bernoulli numbers.",
+        "Her work laid the foundation for modern",
+        "computer programming and computational thinking."
+    ],
+    "Grace Hopper": [
+        "Grace Hopper, born in 1906, was",
+        "a pioneering American computer scientist and",
+        "one of the first programmers of",
+        "the Harvard Mark I computer during",
+        "World War II. She played a",
+        "significant role in the development of",
+        "early programming languages and is often",
+        "credited with coining the term 'debugging'",
+        "after removing a moth from a",
+        "computer relay. Her work laid the",
+        "foundation for modern computer programming,",
+        "and she remains an iconic figure",
+        "in the field of computer science."
+    ],
+    "Jean Sammet": [
+        "Jean Sammet was a pioneering American",
+        "computer scientist known for her significant",
+        "contributions to the development of the",
+        "programming language COBOL (Common Business-Oriented Language)",
+        "in the late 1950s. She played",
+        "a crucial role in the design",
+        "and development of COBOL, which",
+        "became one of the first high-level",
+        "programming languages to target business data",
+        "processing. Sammet's work in programming",
+        "language design and her dedication to",
+        "improving the field of computer science",
+        "left a lasting impact on the industry."
+    ],
+    "Adele Goldberg": [
+        "Adele Goldberg is a prominent computer",
+        "scientist known for her contributions to",
+        "the development of Smalltalk, a",
+        "pioneering object-oriented programming language. She played",
+        "a vital role in the development",
+        "of graphical user interfaces, which",
+        "are now widely used in modern",
+        "computing."
+    ],
+    "Barbara Liskov": [
+        "Barbara Liskov is a pioneering computer",
+        "scientist known for her groundbreaking work",
+        "in programming languages and software engineering.",
+        "She is particularly renowned for",
+        "developing the programming language CLU,",
+        "which introduced key concepts like",
+        "abstract data types and the",
+        "Liskov Substitution Principle, a fundamental",
+        "principle in object-oriented programming."
+    ],
+    "Radia Perlman": [
+        "Radia Perlman is a renowned computer",
+        "scientist known for her pioneering work",
+        "in network design and development.",
+        "She is most famous for",
+        "inventing the Spanning Tree Protocol (STP),",
+        "a fundamental algorithm that revolutionized",
+        "the way data is routed",
+        "through complex networks, contributing significantly",
+        "to the stability and scalability",
+        "of modern Ethernet networks."
+    ],
+    "Frances Allen": [
+        "Frances Allen was a pioneering American",
+        "computer scientist known for her significant",
+        "contributions to the field of",
+        "compiler design and optimization. She",
+        "was the first woman to",
+        "receive the Turing Award in",
+        "2006, one of the highest",
+        "honors in computer science, for",
+        "her groundbreaking work in program",
+        "optimization and her influence on",
+        "the design of programming languages."
+    ],
+    "Shafi Goldwasser": [
+        "Shafi Goldwasser is a renowned computer",
+        "scientist and a pioneer in",
+        "the field of cryptography. She",
+        "is known for her groundbreaking",
+        "work in the development of",
+        "zero-knowledge proofs and has made",
+        "significant contributions to complexity theory",
+        "and the theory of cryptography.",
+        "Goldwasser has received numerous awards",
+        "and honors for her work,",
+        "including the Turing Award in",
+        "2012, which she shared with",
+        "Silvio Micali, for their transformative",
+        "work in cryptography and their",
+        "impact on internet security."
+    ],
+    "Donna Strickland": [
+        "Donna Strickland is a Canadian",
+        "physicist known for her groundbreaking",
+        "work in the field of",
+        "laser physics. In 2018, she",
+        "was awarded the Nobel Prize",
+        "in Physics, becoming the third",
+        "woman in history to receive",
+        "the Nobel Prize in this",
+        "category, for her contributions to",
+        "the development of high-intensity, ultra-short",
+        "optical pulses."
+    ],
+    "Joan Clarke": [
+        "Joan Clarke was a British",
+        "cryptanalyst and mathematician who made",
+        "significant contributions to breaking the",
+        "German Enigma code during World",
+        "War II as part of",
+        "the Bletchley Park codebreaking team.",
+        "She was the Bletchley Park codebreaking team. Her",
+        "contributions to codebreaking remained relatively unknown",
+        "until many years after the war due to",
+        "the secrecy of her work at Bletchley Park."
+    ]
+
 }
+
 colors = ["green", "purple", "brown", "blue"]
 operations = ["reverse", "skip"]
 
@@ -129,6 +248,7 @@ for color in colors:
         card = (operation, color)
         cards.append(card)
         cards.append(card)
+
 for i in range(4):
     cards.append(("wild", "white"))
 
@@ -164,9 +284,12 @@ def find_card(x, y):
 def valid_play(top_card, played_card):
     if top_card[0] == 'wild':
         return True
-    if(top_card[1] == played_card[1]) or top_card[0]==played_card[0] or played_card[0] == "wild" or played_card[0] == "wild +4":
+    if(top_card[1] == played_card[1]) or top_card[0]==played_card[0] or played_card[0] == "wild":
         return True
     return False
+
+# def computer_play():
+
 
 # Rectangle dimensions-
 rectangle_width = 100
@@ -177,7 +300,7 @@ num_rectangles = 9  # You can change this to the desired number
 
 # Calculate horizontal spacing between rectangles
 spacing = (screen_width - (rectangle_width * num_rectangles)) / (num_rectangles + 1)
-print(spacing)
+
 
 run = True
 start = False
@@ -220,12 +343,42 @@ while run == True and start == True:
                 card = player[selected_index - 1]
                 if card[0] in women_in_stem:
                     message = women_in_stem_facts[card[0]]
-                    msg_y = 150
+                    msg_y = 120
                     for m in message:
-                        font = pygame.font.Font(None, 40)
+                        font = pygame.font.Font(None, 25)
                         text = font.render(m, True, (255, 255, 255))  # (R, G, B) for white
-                        screen.blit(text, (100, msg_y))
+                        screen.blit(text, (500, msg_y))
                         msg_y += 40
+
+                    name = card[0]
+                    font = pygame.font.Font(None, 40)
+                    text = font.render(name, True, (255, 255, 255))  # (R, G, B) for white
+                    screen.blit(text, (500, 50))
+                    
+                    text = card[0]
+                    if text == "Ada Lovelace":
+                        image = pygame.image.load('ada_lovelace.png')
+                    elif text == "Adele Goldberg":
+                        image = pygame.image.load('adele_goldberg.jpeg')
+                    elif text == "Barbara Liskov":
+                        image = pygame.image.load('barbara_liskov.png')
+                    elif text == "Donna Strickland":
+                        image = pygame.image.load('donna_strickland.png')
+                    elif text == "Frances Allen":
+                        image = pygame.image.load('frances_allen.jpeg')
+                    elif text == "Grace Hopper":
+                        image = pygame.image.load('grace_hopper.png')
+                    elif text == "Jean Sammet":
+                        image = pygame.image.load('jean_sammet.png')
+                    elif text == "Joan Clarke":
+                        image = pygame.image.load('joan_clarke.jpeg')
+                    elif text == "Radia Perlman":
+                        image = pygame.image.load('radia_perlman.png')
+                    elif text == "Shafi Goldwasser":
+                        image = pygame.image.load('shafi_goldwasser.png')
+
+                    resized_image = pygame.transform.scale(image, (300, 500))
+                    screen.blit(resized_image, (20, 50))
                 else:
                     message = "ummm...are you sure you meant to click on this card?"
                     font = pygame.font.Font(None, 50)
@@ -235,12 +388,12 @@ while run == True and start == True:
 
                 pygame.display.update()
                 time.sleep(5)
+                screen.fill((0, 0, 0))
 
             if event.button == 1 and your_turn:  # Left mouse button clicked
-                print("MOUSE CLICKED")
+                # print("MOUSE CLICKED")
                 clicked_x, clicked_y = event.pos
                 selected_index = find_card(clicked_x, clicked_y)
-                print("Card selected at index:", selected_index)
                 if selected_index != -1:
                     card = player[selected_index - 1]
                     if valid_play(play_stack[-1], card):
@@ -261,7 +414,7 @@ while run == True and start == True:
                             
 
                         your_turn = False
-                        if (play_stack [-1][0] == "reverse") or play_stack[-1][0] == 'skip':
+                        if (play_stack [-1][0] == "reverse") or (play_stack[-1][0] == "skip") or (play_stack[-1][0] == "wild"):
                             your_turn = True
 
         if event.type == pygame.KEYDOWN and your_turn:
@@ -301,10 +454,11 @@ while run == True and start == True:
         screen.blit(text, (550, 50))
 
     else:
+        reverse_and_skip = False
         message = "The computer is playing now!"
         font = pygame.font.Font (None, 36)
         text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-        screen.blit(text, (550, 50))
+        screen.blit(text, (520, 50))
 
         # screen.fill((0, 0, 0))
         # create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
@@ -327,6 +481,13 @@ while run == True and start == True:
                 play_stack.append(card)
                 computer.pop(i)
                 valid = True
+                
+                # if (play_stack [-1][0] == "reverse") or play_stack[-1][0] == 'skip':
+                if card[0] == "reverse" or card[0] == "skip" or card[0] == "wild":
+                    # your_turn = not your_turn
+                    reverse_and_skip = True
+                    create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, card[0], card[1], True)
+                    pygame.display.update()
                 break
         if len(computer) == 0:
             screen.fill((0, 0, 0))
@@ -349,7 +510,8 @@ while run == True and start == True:
                 tries = 0
             # your_turn = False
 
-        your_turn = True
+        if reverse_and_skip == False:
+            your_turn = True
 
     if first_draw:
         create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
