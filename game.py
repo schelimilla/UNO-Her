@@ -10,7 +10,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 
 # player = pygame.Rect((300, 250, 50, 50))
 
-def create_card_object(x, y, width, height, text, card_color):
+def create_card_object(x, y, width, height, text, card_color, center_pile):
     # Create a pygame.Rect for the card's rectangle
     card_rect = pygame.Rect(x, y, width, height)
     
@@ -32,10 +32,66 @@ def create_card_object(x, y, width, height, text, card_color):
     else:
         color = (255, 255, 255)
         text_surface = font.render(text, True, (0, 0, 0))  # black font color
+
     pygame.draw.rect(screen, color, card_rect)
     
+    if text == "Ada Lovelace":
+        image = pygame.image.load('ada_lovelace.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Adele Goldberg":
+        image = pygame.image.load('adele_goldberg.jpeg')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Barba Liskov":
+        image = pygame.image.load('barbara_liskov.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Donna Strickland":
+        image = pygame.image.load('donna_strickland.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Frances Allen":
+        image = pygame.image.load('frances_allen.jpeg')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Grace Hopper":
+        image = pygame.image.load('grace_hopper.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Jean Sammet":
+        image = pygame.image.load('jean_sammet.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Joan Clarke":
+        image = pygame.image.load('joan_clarke.jpeg')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Radia Perlman":
+        image = pygame.image.load('radia_perlman.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "Shafi Goldwasser":
+        image = pygame.image.load('shafi_goldwasser.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "skip":
+        image = pygame.image.load('skip.jpg')
+        # print("SKIP")
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "reverse":
+        image = pygame.image.load('reverse.jpg')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    elif text == "wild":
+        image = pygame.image.load('wild.png')
+        # resized_image = pygame.transform.scale(image, (79, 130))
+    else:
+        print(text)
+        image = pygame.image.load('tbd.jpg')
+        resized_image = pygame.transform.scale(image, (75, 50))
+
+    if center_pile == False:
+        resized_image = pygame.transform.scale(image, (79, 130))
+    else:
+        resized_image = pygame.transform.scale(image, (130, 205))
+    image_surface = pygame.Surface(resized_image.get_size())
+    image_surface.blit(resized_image, (0, 0))
+
     # Draw the text on the card
-    screen.blit(text_surface, text_rect)
+    # screen.blit(text_surface, text_rect)
+    screen.blit(image_surface, (card_rect.x + 10, card_rect.y + 10))
+
+
     
     # Return the card's rectangle
     return card_rect
@@ -138,10 +194,10 @@ while run:
                     if valid_play(play_stack[-1], card):
                         play_stack.append(card)
                         player.pop(selected_index - 1)
-                        create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1])
+                        create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], False)
                         for i in range(len(player)):
                             p = player[i]
-                            create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1])
+                            create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
                             x += rectangle_width + spacing
                             if i == len(player) - 1:
                                 stop_display_cards = True
@@ -197,11 +253,11 @@ while run:
 
         your_turn = True
 
-    create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1])
+    create_card_object(600, 130, rectangle_width * 1.5, rectangle_height * 1.5, play_stack[-1][0], play_stack[-1][1], True)
 
     for i in range(len(player)):
         p = player[i]
-        create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1])
+        create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
         x += rectangle_width + spacing
         if i == len(player) - 1:
             stop_display_cards = True
