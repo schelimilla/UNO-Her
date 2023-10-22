@@ -250,17 +250,20 @@ while run == True and start == True:
                         pygame.display.update()
 
                         if len(player) == 0:
-                            message = "Yay you won!"
-                            font = pygame.font.Font(None, 36)
+                            screen.fill((0, 0, 0))
+                            message = "You Win!"
+                            font = pygame.font.Font(None, 75)
                             text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-                            screen.blit(text, (300, 380))
+                            screen.blit(text, (150, 300))
                             pygame.display.update()
                             time.sleep(10)
-                            run = False
+                            pygame.quit()
+                            
 
                         your_turn = False
                         if (play_stack [-1][0] == "reverse") or play_stack[-1][0] == 'skip':
                             your_turn = True
+
         if event.type == pygame.KEYDOWN and your_turn:
             if event.key == pygame.K_d:
                 if len(player) < 9:
@@ -325,6 +328,15 @@ while run == True and start == True:
                 computer.pop(i)
                 valid = True
                 break
+        if len(computer) == 0:
+            screen.fill((0, 0, 0))
+            message = "Aww No! The Computer Won :("
+            font = pygame.font.Font(None, 75)
+            text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
+            screen.blit(text, (100, 300))
+            pygame.display.update()
+            time.sleep(10)
+            pygame.quit()
         if valid == False:
             if len(computer) < 9:
                 draw_card = cards.pop()
@@ -353,17 +365,17 @@ while run == True and start == True:
         cards = play_stack[0:len(play_stack) - 2]
         random.shuffle(cards)
 
-    if len(player) == 0:
-        message = "Yay you won!"
-        font = pygame.font.Font(None, 36)
-        text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-        screen.blit(text, (300, 380))
+    # if len(player) == 0:
+    #     message = "Yay you won!"
+    #     font = pygame.font.Font(None, 36)
+    #     text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
+    #     screen.blit(text, (300, 380))
 
-    if len(computer) == 0:
-        message = "Aww No! The Computer Won!"
-        font = pygame.font.Font(None, 36)
-        text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
-        screen.blit(text, (300, 380))
+    # if len(computer) == 0:
+    #     message = "Aww No! The Computer Won!"
+    #     font = pygame.font.Font(None, 36)
+    #     text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
+    #     screen.blit(text, (300, 380))
 
     message = "The computer has: " + str(len(computer)) + " cards"
     font = pygame.font.Font(None, 36)
