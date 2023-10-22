@@ -306,13 +306,16 @@ run = True
 start = False
 while run == True and start == False:
     screen.fill((0, 0, 0))
-    message = ["Let's play Womeno!", "This is UNO, with a spin! You will be playing against a computer.", "You may match cards in the pile by either color or person.", "Click on the card you want to play. Press 'd' if you want to draw a card.", "If you ever want to learn more about the woman on your card,", "simply right click on the card!", "Good luck, and press 'Enter' to begin :)"]
-    font = pygame.font.Font (None, 45)
-    msg_y = 200
+    message = ["Let's play UNO-Her!", "This is UNO, with a spin! You will", "be playing against a computer. You may match", "cards in the pile by either color", "or person. Click on the card you",  "want to play. Press 'd' if you", "want to draw a card. If you ever want", "to learn more about the woman on your card,", "simply right click on the card!", "In this version, you can only hold", "a maximum of 9 cards at a time.",  "If you reach 9 cards, press 'd' to continue.", "Good luck, and press 'Enter' to begin :)"]
+    font = pygame.font.Font (None, 35)
+    msg_y = 50
     for m in message:
         text = font.render(m, True, (255, 255, 255))  # (R, G, B) for white
-        screen.blit(text, (150, msg_y))
-        msg_y += 30
+        screen.blit(text, (400, msg_y))
+        msg_y += 40
+    make_waves = pygame.image.load('make_waves.png')
+    resize_img = pygame.transform.scale (make_waves, (50, 50))
+    screen.blit(make_waves, (50, 162))
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
@@ -387,7 +390,7 @@ while run == True and start == True:
                     msg_y += 40
 
                 pygame.display.update()
-                time.sleep(5)
+                time.sleep(7)
                 screen.fill((0, 0, 0))
 
             if event.button == 1 and your_turn:  # Left mouse button clicked
@@ -436,7 +439,6 @@ while run == True and start == True:
                     pygame.display.update()
                     first_draw = False
                     # time.sleep(2)
-                
 
                 else:
                     tries += 1
