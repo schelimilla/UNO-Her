@@ -266,8 +266,18 @@ while run == True and start == True:
         font = pygame.font.Font (None, 36)
         text = font.render(message, True, (255, 255, 255))  # (R, G, B) for white
         screen.blit(text, (550, 50))
+
+        x = 30
+        for i in range(len(player)):
+            p = player[i]
+            create_card_object(x, y, rectangle_width, rectangle_height, p[0], p[1], False)
+            x += rectangle_width + spacing
+            if i == len(player) - 1:
+                stop_display_cards = True
+
         pygame.display.update()
         time.sleep(1)
+        first_draw = False
 
         valid = False
         for i in range(len(computer)):
